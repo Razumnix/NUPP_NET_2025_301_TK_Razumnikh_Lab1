@@ -1,0 +1,44 @@
+namespace Library.Common;
+
+// Базовий клас
+public abstract class Publication {
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Title { get; set; }
+    public int Year { get; set; }
+
+    [cite_start]// Конструктор [cite: 63]
+    public Publication(string title, int year) {
+        Title = title;
+        Year = year;
+    }
+}
+
+[cite_start]// Похідний клас 1 [cite: 42]
+public class Book : Publication {
+    public string Author { get; set; }
+    public string ISBN { get; set; }
+
+    [cite_start]// Статичне поле [cite: 64]
+    public static string Category = "Literature";
+
+    public Book(string title, string author, int year) : base(title, year) {
+        Author = author;
+    }
+}
+
+[cite_start]// Похідний клас 2 [cite: 42]
+public class Magazine : Publication {
+    public int IssueNumber { get; set; }
+    public string Publisher { get; set; }
+
+    public Magazine(string title, int issue, int year) : base(title, year) {
+        IssueNumber = issue;
+    }
+}
+
+[cite_start]// Окремий клас [cite: 42]
+public class Reader {
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string FullName { get; set; }
+    public string TicketNumber { get; set; }
+}

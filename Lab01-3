@@ -1,0 +1,24 @@
+public interface ICrudService<T> {
+    void Create(T element);
+    T Read(Guid id);
+    IEnumerable<T> ReadAll();
+    void Update(T element);
+    void Remove(T element);
+}
+
+public class GenericService<T> : ICrudService<T> where T : class {
+    private readonly List<T> _storage = new List<T>();
+
+    public void Create(T element) => _storage.Add(element);
+
+    public IEnumerable<T> ReadAll() => _storage;
+
+    public T Read(Guid id) {
+        // Динамічний пошук за властивістю Id
+        return _storage.FirstOrDefault(x => (Guid)x.GetType().GetProperty("Id")?.GetValue(x) == id);
+    }
+
+    public void Update(T element) { /* Логіка оновлення */ }
+
+    public void Remove(T element) => _storage.Remove(element);
+}

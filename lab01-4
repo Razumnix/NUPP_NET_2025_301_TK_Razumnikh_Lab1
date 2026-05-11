@@ -1,0 +1,16 @@
+using Library.Common;
+
+var bookService = new GenericService<Book>();
+
+[cite_start]// Створення об'єктів [cite: 82]
+var book1 = new Book("Kobzar", "Taras Shevchenko", 1840);
+var book2 = new Book("Shadows of Forgotten Ancestors", "Mykhailo Kotsiubynsky", 1911);
+
+bookService.Create(book1);
+bookService.Create(book2);
+
+// Виведення результатів
+Console.WriteLine("Список книг у бібліотеці:");
+foreach (var book in bookService.ReadAll()) {
+    Console.WriteLine(book.GetInfo()); // Використання методу розширення
+}

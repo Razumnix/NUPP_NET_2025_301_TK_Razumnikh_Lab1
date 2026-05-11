@@ -1,0 +1,9 @@
+[cite_start]// Делегат та Подія [cite: 65]
+public delegate void LibraryActionHandler(string message);
+
+public static class LibraryExtensions {
+    [cite_start]// Метод розширення [cite: 67]
+    public static string GetInfo(this Book book) {
+        return $"Книга: {book.Title}, Автор: {book.Author}";
+    }
+}
